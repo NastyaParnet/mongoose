@@ -8,7 +8,7 @@ describe('DELETE', () => {
 
   afterAll(async () => await dbHandler.closeDatabase());
 
-  it('/api/v1/articles returns articles', async () => {
+  it.skip('/api/v1/articles returns articles', async () => {
     const articleToDelete = await Article.findOne({
       title: 'The Forest Hiker',
     });

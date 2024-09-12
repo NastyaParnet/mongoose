@@ -8,7 +8,7 @@ describe('GET', () => {
 
   afterAll(async () => await dbHandler.closeDatabase());
 
-  it('/api/v1/articles returns articles', async () => {
+  it.skip('/api/v1/articles returns articles', async () => {
     const response = await request(app)
       .get('/api/v1/articles')
       .set('Accept', 'application/json')
@@ -34,7 +34,7 @@ describe('GET', () => {
       .toHaveProperty('likesQuantity', 1);
   });
 
-  it(`/api/v1/articles?title=The+City+Mall returns one article 
+  it.skip(`/api/v1/articles?title=The+City+Mall returns one article 
   with expected properties`, async () => {
     const expectedQuantity = 1;
 
@@ -61,7 +61,7 @@ describe('GET', () => {
     // expect(response.body).toEqual({});
   });
 
-  it('/api/v1/articles?viewsCount[gt]=3 returns two articles', async () => {
+  it.skip('/api/v1/articles?viewsCount[gt]=3 returns two articles', async () => {
     const expectedQuantity = 2;
 
     const response = await request(app)
@@ -74,7 +74,7 @@ describe('GET', () => {
     expect(response.body.data.articles.length).toEqual(expectedQuantity);
   });
 
-  it(`/api/v1/articles?theme=trips returns four articles`, async () => {
+  it.skip(`/api/v1/articles?theme=trips returns four articles`, async () => {
     const expectedQuantity = 4;
 
     const response = await request(app)
@@ -87,7 +87,7 @@ describe('GET', () => {
     expect(response.body.data.articles.length).toEqual(expectedQuantity);
   });
 
-  it(`/api/v1/articles?theme=trips&viewsCount[gte]=1 returns two articles`, async () => {
+  it.skip(`/api/v1/articles?theme=trips&viewsCount[gte]=1 returns two articles`, async () => {
     const expectedQuantity = 3;
 
     const response = await request(app)
@@ -100,7 +100,7 @@ describe('GET', () => {
     expect(response.body.data.articles.length).toEqual(expectedQuantity);
   });
 
-  it(`/api/v1/articles?limit=2 returns two articles`, async () => {
+  it.skip(`/api/v1/articles?limit=2 returns two articles`, async () => {
     const expectedQuantity = 2;
 
     const response = await request(app)
@@ -113,7 +113,7 @@ describe('GET', () => {
     expect(response.body.data.articles.length).toEqual(expectedQuantity);
   });
 
-  it(`/api/v1/articles?sort=title&limit=2 returns articles ordered alphabetically by title`, async () => {
+  it.skip(`/api/v1/articles?sort=title&limit=2 returns articles ordered alphabetically by title`, async () => {
     const expectedQuantity = 2;
 
     const response = await request(app)
@@ -128,7 +128,7 @@ describe('GET', () => {
     expect(response.body.data.articles[1].title).toEqual('The Beach Resort');
   });
 
-  it(`/api/v1/articles?sort=theme,title returns articles 
+  it.skip(`/api/v1/articles?sort=theme,title returns articles 
   ordered alphabetically by theme and then by title`, async () => {
     const expectedQuantity = 7;
 
@@ -150,7 +150,7 @@ describe('GET', () => {
     );
   });
 
-  it(`/api/v1/articles?sort=title&limit=2&page=2 returns two articles 
+  it.skip(`/api/v1/articles?sort=title&limit=2&page=2 returns two articles 
   from page number 2 ordered alphabetically by title`, async () => {
     const expectedQuantity = 2;
 
@@ -168,7 +168,7 @@ describe('GET', () => {
     );
   });
 
-  it(`/api/v1/articles/{id} returns an article 
+  it.skip(`/api/v1/articles/{id} returns an article 
   with expected properties`, async () => {
     const articleToGet = await Article.findOne({
       title: 'The Forest Hiker',

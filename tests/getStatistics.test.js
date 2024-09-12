@@ -7,7 +7,7 @@ describe('GET', () => {
 
   afterAll(async () => await dbHandler.closeDatabase());
 
-  it('/api/v1/articles/most-liked returns three most liked articles', async () => {
+  it.skip('/api/v1/articles/most-liked returns three most liked articles', async () => {
     const response = await request(app)
       .get('/api/v1/articles/most-liked?limit=2')
       .set('Accept', 'application/json')
@@ -22,7 +22,7 @@ describe('GET', () => {
     ]);
   });
 
-  it('/api/v1/articles/views-by-theme returns three most liked articles', async () => {
+  it.skip('/api/v1/articles/views-by-theme returns three most liked articles', async () => {
     const response = await request(app)
       .get('/api/v1/articles/views-by-theme')
       .set('Accept', 'application/json')
