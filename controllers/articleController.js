@@ -97,7 +97,24 @@ exports.patchArticle = async (req, res) => {
   }
 };
 
-exports.deleteArticle = async () => {};
+exports.deleteArticle = async (req, res) => {
+  try {
+    await Article.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: 'success',
+      data: {
+        article: null,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: {
+        error,
+      },
+    });
+  }
+};
 
 exports.threeMostLiked = async () => {};
 
