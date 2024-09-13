@@ -11,7 +11,7 @@ describe('PATCH', () => {
   // afterEach(async () => await dbHandler.clearDatabase());
   afterAll(async () => await dbHandler.closeDatabase());
 
-  it.skip('/api/v1/articles returns articles', async () => {
+  it('/api/v1/articles returns articles', async () => {
     const articleToUpdate = await Article.findOne({
       title: 'The Forest Hiker',
     });

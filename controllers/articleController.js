@@ -77,7 +77,25 @@ exports.postArticle = async (req, res) => {
   }
 };
 
-exports.patchArticle = async () => {};
+exports.patchArticle = async (req, res) => {
+  try {
+    await Article.findByIdAndUpdate(req.params.id, req.body);
+    const article = await Article.findById(req.params.id);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        article,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: {
+        error,
+      },
+    });
+  }
+};
 
 exports.deleteArticle = async () => {};
 
