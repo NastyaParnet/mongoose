@@ -168,7 +168,7 @@ describe('GET', () => {
     );
   });
 
-  it.skip(`/api/v1/articles/{id} returns an article 
+  it(`/api/v1/articles/{id} returns an article 
   with expected properties`, async () => {
     const articleToGet = await Article.findOne({
       title: 'The Forest Hiker',
