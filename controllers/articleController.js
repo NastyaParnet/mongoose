@@ -116,6 +116,35 @@ exports.deleteArticle = async (req, res) => {
   }
 };
 
-exports.threeMostLiked = async () => {};
+exports.threeMostLiked = async (req, res) => {
+  try {
+    const limit = req.query.limit ? +req.query.limit : 3;
+    const articles = await Article.find().sort('title');
+    const result = articles
+      .sort((article1, article2) =>
+        article1.rating > article2.rating ? -1 : 1
+      )
+      .map((article) => ({
+        title: article.title,
+        commentsCount: article.comments.length,
+        rating: +(article.rating - 1).toFixed(15),
+      }))
+      .slice(0, limit);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        count: result.length,
+        result,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: {
+        error,
+      },
+    });
+  }
+};
 
 exports.viewsCountByTheme = async () => {};

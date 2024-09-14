@@ -7,7 +7,7 @@ describe('GET', () => {
 
   afterAll(async () => await dbHandler.closeDatabase());
 
-  it.skip('/api/v1/articles/most-liked returns three most liked articles', async () => {
+  it('/api/v1/articles/most-liked returns three most liked articles', async () => {
     const response = await request(app)
       .get('/api/v1/articles/most-liked?limit=2')
       .set('Accept', 'application/json')
@@ -18,7 +18,7 @@ describe('GET', () => {
     expect(response.body.data.result.length).toEqual(2);
     expect(response.body.data.result).toEqual([
       { commentsCount: 1, rating: 1, title: 'The Forest Hiker' },
-      { commentsCount: 3, rating: 0.3333333333333333, title: 'The Art Museum' },
+      { commentsCount: 3, rating: 0.333333333333333, title: 'The Art Museum' },
     ]);
   });
 
