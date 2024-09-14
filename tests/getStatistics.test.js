@@ -22,7 +22,7 @@ describe('GET', () => {
     ]);
   });
 
-  it.skip('/api/v1/articles/views-by-theme returns three most liked articles', async () => {
+  it('/api/v1/articles/views-by-theme returns three most liked articles', async () => {
     const response = await request(app)
       .get('/api/v1/articles/views-by-theme')
       .set('Accept', 'application/json')
@@ -33,10 +33,10 @@ describe('GET', () => {
     expect(response.body.data.result.length).toEqual(4);
 
     expect(response.body.data.result).toEqual([
-      { _id: 'trips', views: 9 },
-      { _id: 'shopping', views: 8 },
       { _id: 'art', views: 2 },
       { _id: 'food', views: 1 },
+      { _id: 'shopping', views: 8 },
+      { _id: 'trips', views: 9 },
     ]);
   });
 });

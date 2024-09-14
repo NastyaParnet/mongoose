@@ -147,4 +147,29 @@ exports.threeMostLiked = async (req, res) => {
   }
 };
 
-exports.viewsCountByTheme = async () => {};
+exports.viewsCountByTheme = async (req, res) => {
+  try {
+    const result = await Article.aggregate([
+      {
+        $group: {
+          _id: '$theme',
+          views: { $sum: '$viewsCount' },
+        },
+      },
+    ]).sort('_id');
+    res.status(200).json({
+      status: 'success',
+      data: {
+        count: result.length,
+        result,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: {
+        error,
+      },
+    });
+  }
+};
